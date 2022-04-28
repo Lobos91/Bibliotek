@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Bibliotek.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Bibliotek.Pages
@@ -11,10 +12,11 @@ namespace Bibliotek.Pages
         {
             _logger = logger;
         }
-
+      
+        public BookModel Time { get; set; } = new();
         public void OnGet()
         {
-
+            Time.LoanDateTimeEnd = DateTime.Now;
         }
     }
 }
