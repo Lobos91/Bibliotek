@@ -13,10 +13,9 @@ namespace Bibliotek.Pages
             _logger = logger;
         }
       
-        public BookModel Time { get; set; } = new();
         public void OnGet()
         {
-            Time.LoanDateTimeEnd = DateTime.Now;
+         
         }
     }
 }
