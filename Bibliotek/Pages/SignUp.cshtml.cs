@@ -55,11 +55,14 @@ namespace Bibliotek.Pages
 
                     await _signInManager.PasswordSignInAsync(newuser, Signup.Password, false, false);
 
+                    TempData["success"] = "Account successfully created";
+                    return RedirectToPage("/Index");
                 }
 
             }
-
-            return RedirectToPage("/Index");
+            
+            TempData["fail"] = "Application was unable to create account. Please try again.";
+            return Page();
 
         }
     }
