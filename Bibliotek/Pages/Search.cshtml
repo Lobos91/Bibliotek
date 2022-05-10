@@ -2,9 +2,51 @@
 @model Bibliotek.Pages.SearchModel
 @{
     ViewData["Title"] = "Search page";
+    int counter = 1;
 }
 
+
+
 <div>
-    <h1 class="display-4">Welcome</h1>
-    <p>Test</p>
+    <h1 class="display-4">Söksidan</h1>
 </div>
+
+<div class="col-4">
+    <form method="get">
+        <div class="input-group">
+            <input class="form-control" asp-for="SearchKey" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+<br />
+
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tittle</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Author</th>
+      <th scope="col">Pages</th>
+      <th scope="col">Availability</th>
+    </tr>
+  </thead>
+  <!-- ToDO: Loop in tbody-->
+  <tbody>
+    <tr>
+      <th scope="row">@(counter++)</th>
+      <td>Gladiator </td>
+      <td>History</td>
+      <td>Mark Ericksson</td>
+      <td>203</td>
+      <td>
+          @{//if()
+
+          }
+      </td>
+    </tr>
+  </tbody>
+</table>
