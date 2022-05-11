@@ -1,6 +1,5 @@
 ﻿using Bibliotek.Data;
 using Bibliotek.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bibliotek.Controller
