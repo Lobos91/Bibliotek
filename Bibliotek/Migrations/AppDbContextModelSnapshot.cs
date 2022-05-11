@@ -35,7 +35,6 @@ namespace Bibliotek.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Lent")
@@ -47,7 +46,7 @@ namespace Bibliotek.Migrations
                     b.Property<DateTime?>("LoanDateTimeStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Pages")
+                    b.Property<int?>("Pages")
                         .HasColumnType("int");
 
                     b.Property<string>("Tittle")
@@ -62,6 +61,37 @@ namespace Bibliotek.Migrations
                     b.HasIndex("UserModelID");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Author = "David Willcock",
+                            Genre = "Document",
+                            Lent = false,
+                            Pages = 437,
+                            Tittle = "Secret of the universe"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Author = "Mariam Jasmin",
+                            Genre = "Poetry",
+                            Lent = false,
+                            Pages = 301,
+                            Tittle = "Cool book"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Author = "Arnold S.",
+                            Genre = "Manual",
+                            Lent = true,
+                            LoanDateTimeEnd = new DateTime(2022, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LoanDateTimeStart = new DateTime(2022, 5, 10, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Pages = 301,
+                            Tittle = "Training techniques"
+                        });
                 });
 
             modelBuilder.Entity("Bibliotek.Models.EBookModel", b =>
@@ -77,7 +107,6 @@ namespace Bibliotek.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Lent")
@@ -88,6 +117,9 @@ namespace Bibliotek.Migrations
 
                     b.Property<DateTime?>("LoanDateTimeStart")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("Pages")
+                        .HasColumnType("int");
 
                     b.Property<string>("Tittle")
                         .IsRequired()
@@ -100,7 +132,18 @@ namespace Bibliotek.Migrations
 
                     b.HasIndex("UserModelID");
 
-                    b.ToTable("EBookModel");
+                    b.ToTable("Ebooks");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 6,
+                            Author = "Tom Hardy",
+                            Genre = "Manual",
+                            Lent = false,
+                            Pages = 264,
+                            Tittle = "C# for begginers"
+                        });
                 });
 
             modelBuilder.Entity("Bibliotek.Models.MovieModel", b =>
@@ -116,12 +159,11 @@ namespace Bibliotek.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Length")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Length")
+                        .HasColumnType("int")
+                        .HasColumnName("Length(min)");
 
                     b.Property<bool>("Lent")
                         .HasColumnType("bit");
@@ -143,7 +185,29 @@ namespace Bibliotek.Migrations
 
                     b.HasIndex("UserModelID");
 
-                    b.ToTable("MovieModel");
+                    b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 4,
+                            Director = "Wachowsky brothers",
+                            Genre = "Document",
+                            Length = 94,
+                            Lent = false,
+                            Tittle = "Matrix"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Director = "Wachowsky brothers",
+                            Genre = "SF",
+                            Length = 142,
+                            Lent = true,
+                            LoanDateTimeEnd = new DateTime(2022, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LoanDateTimeStart = new DateTime(2022, 5, 9, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Tittle = "Cloud Atlas"
+                        });
                 });
 
             modelBuilder.Entity("Bibliotek.Models.UserModel", b =>
