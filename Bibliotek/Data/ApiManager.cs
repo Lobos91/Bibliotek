@@ -6,7 +6,7 @@ namespace Bibliotek.Data
     public class ApiManager
     {
 
-        private static readonly HttpClient client = new HttpClient();
+       // private static readonly HttpClient client = new HttpClient();
 
         private string baseURL = "https://localhost:7119/api/";
 
@@ -39,6 +39,28 @@ namespace Bibliotek.Data
 
         ////////////////////////////////
         //----------- Books ----------//  
+        public async Task<List<BookModel>> GetBooks()
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.GetFromJsonAsync<List<BookModel>>(baseURL + "Book");
+                return response;
+            }
 
+            return null;
+        }
+
+        ////////////////////////////////
+        //----------- Movies ----------//  
+        public async Task<List<MovieModel>> GetMovies()
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.GetFromJsonAsync<List<MovieModel>>(baseURL + "Movie");
+                return response;
+            }
+
+            return null;
+        }
     }
 }

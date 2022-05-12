@@ -6,7 +6,6 @@
 }
 
 
-
 <div>
     <h1 class="display-4">Söksidan</h1>
 </div>
@@ -23,30 +22,92 @@
 </div>
 <br />
 
+<h5> <i class="bi bi-book"></i> &nbsp; Books</h5>
 <table class="table">
   <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Tittle</th>
-      <th scope="col">Genre</th>
       <th scope="col">Author</th>
+      <th scope="col">Genre</th>
       <th scope="col">Pages</th>
       <th scope="col">Availability</th>
     </tr>
   </thead>
-  <!-- ToDO: Loop in tbody-->
-  <tbody>
-    <tr>
-      <th scope="row">@(counter++)</th>
-      <td>Gladiator </td>
-      <td>History</td>
-      <td>Mark Ericksson</td>
-      <td>203</td>
-      <td>
-          @{//if()
+ 
+    <tbody>
+        @foreach (var obj in @Model.Books)
+        {
+            <tr>
+                <th scope="row">@(counter++)</th>
+                <td>@obj.Tittle </td>
+                <td>@obj.Author</td>
+                <td>@obj.Genre</td>
+                <td>@obj.Pages</td>
+                <td>
+                    @(obj.Lent ? "Available" : "Non available") 
+                </td>
+            </tr>
+        }
+  </tbody>
+</table>
 
-          }
-      </td>
+<h5> <i class="bi bi-film"></i> &nbsp; Movies</h5>
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tittle</th>
+      <th scope="col">Director</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Length</th>
+      <th scope="col">Availability</th>
     </tr>
+  </thead>
+ 
+    <tbody>
+        @foreach (var obj in @Model.Movies)
+        {
+            <tr>
+                <th scope="row">@(counter++)</th>
+                <td>@obj.Tittle </td>
+                <td>@obj.Director</td>
+                <td>@obj.Genre</td>
+                <td>@obj.Length</td>
+                <td>
+                    @(obj.Lent ? "Available" : "Non available") 
+                </td>
+            </tr>
+        }
+  </tbody>
+</table>
+
+<h5><i class="bi bi-book"></i> &nbsp; Ebooks</h5>
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tittle</th>
+      <th scope="col">Director</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Length</th>
+      <th scope="col">Availability</th>
+    </tr>
+  </thead>
+ 
+    <tbody>
+        @foreach (var obj in @Model.Movies)
+        {
+            <tr>
+                <th scope="row">@(counter++)</th>
+                <td>@obj.Tittle </td>
+                <td>@obj.Director</td>
+                <td>@obj.Genre</td>
+                <td>@obj.Length</td>
+                <td>
+                    @(obj.Lent ? "Available" : "Non available") 
+                </td>
+            </tr>
+        }
   </tbody>
 </table>
