@@ -7,6 +7,7 @@ namespace Bibliotek.Models
         public int ID { get; set; } 
         public string? Title { get; set; }
         public string Genre { get; set; }   
+        public bool Lent { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true)]
         public DateTime? LoanDateTimeStart { get; set; }
