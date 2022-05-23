@@ -36,7 +36,7 @@
   </thead>
  
     <tbody>
-        @foreach (var obj in @Model.Books)
+      @*  @foreach (var obj in @Model.Books)
         {
             <tr>
                 <th scope="row">@(counter++)</th>
@@ -48,7 +48,7 @@
                     @(obj.Lent ? "Available" : "Non available") 
                 </td>
             </tr>
-        }
+        }*@
   </tbody>
 </table>
 
@@ -66,7 +66,7 @@
   </thead>
  
     <tbody>
-        @foreach (var obj in @Model.Movies)
+       @* @foreach (var obj in @Model.Movies)
         {
             <tr>
                 <th scope="row">@(counter++)</th>
@@ -78,36 +78,6 @@
                     @(obj.Lent ? "Available" : "Non available") 
                 </td>
             </tr>
-        }
-  </tbody>
-</table>
-
-<h5><i class="bi bi-book"></i> &nbsp; Ebooks</h5>
-<table class="table">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Tittle</th>
-      <th scope="col">Director</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Length</th>
-      <th scope="col">Availability</th>
-    </tr>
-  </thead>
- 
-    <tbody>
-        @foreach (var obj in @Model.Movies)
-        {
-            <tr>
-                <th scope="row">@(counter++)</th>
-                <td>@obj.Tittle </td>
-                <td>@obj.Director</td>
-                <td>@obj.Genre</td>
-                <td>@obj.Length</td>
-                <td>
-                    @(obj.Lent ? "Available" : "Non available") 
-                </td>
-            </tr>
-        }
+        }*@
   </tbody>
 </table>

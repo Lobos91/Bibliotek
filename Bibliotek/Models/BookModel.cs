@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bibliotek.Models
 {
-    public class BookModel
+    public class BookModel : ProductModel
     {
-        public string Author { get; set; }
-        public int? Pages { get; set; }
+        [Column(Order = 3)]  public string? BookSize { get; set; }  //A2 / A3 / A4 etc
 
     }
 }

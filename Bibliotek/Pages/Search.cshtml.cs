@@ -9,18 +9,22 @@ namespace Bibliotek.Pages
     {
         [BindProperty(SupportsGet = true)] public string? SearchKey { get; set; } = string.Empty;
         public ApiManager apiManager { get; set; }
-        public List<BookModel> Books { get; set; } = new();
-        public List<MovieModel> Movies { get; set; } = new();
+        //public List<BookModel> Books { get; set; } = new();
+        //public List<MovieModel> Movies { get; set; } = new();
+
+     
 
         public async Task OnGet()
         {
+
+        
 
             if (string.IsNullOrEmpty(SearchKey))
             {
                 // return all or null
                 apiManager = new();
-                Books = await apiManager.GetBooks();
-                Movies = await apiManager.GetMovies();
+                //Books = await apiManager.GetBooks();
+                //Movies = await apiManager.GetMovies();
 
             }
             else
