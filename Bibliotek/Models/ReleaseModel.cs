@@ -14,4 +14,23 @@ namespace Bibliotek.Models
         [DisplayFormat(ApplyFormatInEditMode = true)]
         public DateTime? LoanDateTimeEnd { get; set; }
     }
+
+    public class Book : ReleaseModel
+    {
+        public string Author { get; set; }
+        public int? Pages { get; set; }
+    }
+
+    public class EBook : ReleaseModel
+    {
+        public string Author { get; set; }
+        public int? Pages { get; set; }
+        public string Type { get; set; } // PDF, EPUB, MOBI, IBA etc
+    }
+
+    public class Movie : ReleaseModel
+    {
+        public int? Length { get; set; }
+        public string Director { get; set; }
+    }
 }
