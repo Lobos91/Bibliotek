@@ -11,15 +11,15 @@ namespace Bibliotek.Data
 
         }
 
-        public DbSet<ReleaseModel> Releases { get; set; }
-        public DbSet<Book> Books { get; set; }
-        public DbSet<EBook> EBooks { get; set; }
-        public DbSet<Movie> Movies { get; set; }    
+        //public DbSet<ReleaseModel> Releases { get; set; }
+        //public DbSet<Book> Books { get; set; }
+        //public DbSet<EBook> EBooks { get; set; }
+        //public DbSet<Movie> Movies { get; set; }
 
-        //public DbSet<UserModel> Users { get; set; }
-        //public DbSet<BookModel> Books { get; set; }
-        //public DbSet<EBookModel> Ebooks { get; set; }
-        //public DbSet<MovieModel> Movies { get; set; }
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<BookModel> Books { get; set; }
+        public DbSet<EBookModel> Ebooks { get; set; }
+        public DbSet<MovieModel> Movies { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
