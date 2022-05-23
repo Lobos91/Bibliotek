@@ -10,10 +10,8 @@ namespace Bibliotek.Models
         public string Title { get; set; }
         public string Genre { get; set; }
         public int? Pages { get; set; }
-
-        [ForeignKey(nameof(Product))]
-        public int ProductId { get; set; }
-        public ProductModel Product { get; set; }
+       
+        public List<ProductModel> Products { get; set; }
 
     }
 }

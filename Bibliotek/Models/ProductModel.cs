@@ -14,11 +14,12 @@ namespace Bibliotek.Models
         [DisplayFormat(ApplyFormatInEditMode = true)]
         public DateTime? LoanDateTimeEnd { get; set; }
 
-  
-        public List<ReleaseModel> Releases { get; set; }
+        [ForeignKey(nameof(Release))]
+        [Column(Order = 3)] public int ReleaseId { get; set; }
+        public ReleaseModel Release { get; set; }
 
       
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public UserModel? User { get; set; }
 
     }
