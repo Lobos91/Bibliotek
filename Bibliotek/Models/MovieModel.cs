@@ -5,9 +5,9 @@ namespace Bibliotek.Models
 {
     public class MovieModel : ProductModel
     {
-        public int Id { get; set; }
-        [Column("Length(min)")]
+        [Column("Length(min)", Order = 5)]
         public int? Length { get; set; }
-        public string Director { get; set; }
+        [Column(Order = 6)]
+        public string? Director { get; set; }
     }
 }
