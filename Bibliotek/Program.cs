@@ -7,7 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddRazorPages();
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews().AddNewtonsoftJson();
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
+// if you are having error with above service, install "Microsoft.AspNetCore.Mvc.NewtonsoftJson" nugget package 6.0.4
+
 builder.Services.AddEndpointsApiExplorer();
 
 var connectionStringAuth = builder.Configuration.GetConnectionString("AuthConnection");

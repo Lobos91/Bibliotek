@@ -2,7 +2,7 @@
 using Bibliotek.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bibliotek.Controller
+namespace Bibliotek.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
