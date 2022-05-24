@@ -19,6 +19,14 @@ namespace Bibliotek.Controllers
             return Ok(users);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user =  await _context.Users.FindAsync(id);
+            return Ok(user);
+            
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostUser(UserModel User)
         {

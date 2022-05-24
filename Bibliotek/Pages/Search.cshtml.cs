@@ -3,19 +3,35 @@ using Bibliotek.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Bibliotek.Pages
 {
     public class SearchModel : PageModel
     {
-        [BindProperty(SupportsGet = true)] public string? SearchKey { get; set; } = string.Empty;
-        public ApiManager apiManager { get; set; }
+        private readonly SignInManager<IdentityUser> _signInManager;
+        public SearchModel(SignInManager<IdentityUser> signInManager)
+        {
+            _signInManager = signInManager;
+        }
 
+        [BindProperty(SupportsGet = true)] public string? SearchKey { get; set; } = string.Empty;
+        public ApiManager apiManager { get; set; } = new();
         public List<ProductModel> Products { get; set; } = new();
+        public UserModel LoggedUser { get; set; } = new();
 
         public async Task OnGet()
         {
-            apiManager = new();
+            if(_signInManager.IsSignedIn(User))
+            {
+                var currentUser = await _signInManager.UserManager.GetUserAsync(HttpContext.User);
+                var users = await apiManager.GetUsers();
+                LoggedUser = users.FirstOrDefault(u => u.UserName == currentUser.UserName);
+            }
+               
+            
+
             if (string.IsNullOrEmpty(SearchKey))
             {
                 // return all or null

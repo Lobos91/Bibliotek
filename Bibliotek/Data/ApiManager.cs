@@ -22,6 +22,16 @@ namespace Bibliotek.Data
 
             return null;
         }
+        public async Task<UserModel> GetUser(int id)
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.GetFromJsonAsync<UserModel>(baseURL + "User/" + id);
+                return response;
+            }
+
+            return null;
+        }
         //---------------------------------------------------------------------------------//
         public async Task<UserModel> PostUser(UserModel User)
         {
