@@ -13,9 +13,5 @@ namespace Bibliotek.Pages
             _logger = logger;
         }
       
-        public void OnGet()
-        {
-         
-        }
     }
 }

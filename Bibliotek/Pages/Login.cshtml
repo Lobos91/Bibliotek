@@ -1,0 +1,26 @@
+﻿@page
+@model Bibliotek.Pages.LoginModel
+@{
+}
+
+
+<h2 class="display-2 mb-4">Sign in</h2>
+
+<form method="post">
+    <div class="mb-2">
+        <label for="@Model.UserName" class="form-label">Username:</label>
+        <input asp-for="UserName" id="username" class="form-control mb-2" type="text" placeholder="Username" />
+           <span class="text-warning" asp-validation-for="UserName"></span>
+
+        <label for="@Model.Password" class="form-label">Password:</label>
+        <input asp-for="@Model.Password" id="password" class="form-control mb-4" type="password" placeholder="Password" />
+           <span class="text-warning" asp-validation-for="@Model.Password"></span>
+
+        <input type="submit" class="btn btn-primary" value="Sign in!" />
+    </div>
+</form>
+
+
+@section Scripts {
+     <partial name="_ValidationScriptsPartial" />
+}
