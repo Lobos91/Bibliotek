@@ -19,26 +19,21 @@ namespace Bibliotek.Pages
 
         [BindProperty]
         public SignupModel Signup { get; set; }
-        public UserModel User { get; set; } = new();
+        public UserModel NewUser { get; set; } = new();
 
         //testy
-        public List<UserModel> Users { get; set; } = new();
         public ApiManager apiManager { get; set; }
 
-        public async Task OnGet()
-        {
-            
-            //Users = await apiManager.GetUsers();
-        }
+     
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
                 IdentityUser newuser = new IdentityUser();
-                newuser.UserName = User.UserName = Signup.Username;
+                newuser.UserName = NewUser.UserName = Signup.Username;
                 newuser.Email = Signup.Email;
-                //newuser.Email = Signup.Email;
+              
                 apiManager = new();
                 var users = await apiManager.GetUsers();
 
@@ -48,10 +43,14 @@ namespace Bibliotek.Pages
                 {
                     if (!users.Any())
                     {
-                        User.Role = Role.SuperAdmin;
+                        NewUser.Role = Role.SuperAdmin;
+                    }
+                    else 
+                    {
+                        NewUser.Role = Role.User; 
                     }
 
-                    await apiManager.PostUser(User);
+                    await apiManager.PostUser(NewUser);
 
                     await _signInManager.PasswordSignInAsync(newuser, Signup.Password, false, false);
 

@@ -44,24 +44,24 @@ namespace Bibliotek.Data
              */
 
             //---------- USERS
-            modelBuilder.Entity<UserModel>().HasData(new UserModel
-            {
-                Id = 1,
-                UserName = "Marius Ohlsson",
-                Role = Role.User,
-            });
-            modelBuilder.Entity<UserModel>().HasData(new UserModel
-            {
-                Id = 2,
-                UserName = "Jesus Christus",
-                Role = Role.User,
-            });
-            modelBuilder.Entity<UserModel>().HasData(new UserModel
-            {
-                Id = 3,
-                UserName = "Sasha Grey",
-                Role = Role.User,
-            });
+            //modelBuilder.Entity<UserModel>().HasData(new UserModel
+            //{
+            //    Id = 1,
+            //    UserName = "Marius Ohlsson",
+            //    Role = Role.User,
+            //});
+            //modelBuilder.Entity<UserModel>().HasData(new UserModel
+            //{
+            //    Id = 2,
+            //    UserName = "Jesus Christus",
+            //    Role = Role.User,
+            //});
+            //modelBuilder.Entity<UserModel>().HasData(new UserModel
+            //{
+            //    Id = 3,
+            //    UserName = "Sasha Grey",
+            //    Role = Role.User,
+            //});
 
             //---------- RELEASES
             modelBuilder.Entity<ReleaseModel>().HasData(new ReleaseModel
@@ -118,13 +118,13 @@ namespace Bibliotek.Data
             modelBuilder.Entity<BookModel>().HasData(new BookModel
             {
                 Id = 2,
-                Lent = true,
+               // Lent = true,
                 Type = "Book",
                 ReleaseId = 1,
                 BookFormat = "A2",
-                LoanDateTimeStart = new DateTime(2022, 05, 23, 10, 0, 0),
-                LoanDateTimeEnd = new DateTime(2022, 05, 30, 10, 0, 0),
-                UserId = 1
+                //LoanDateTimeStart = new DateTime(2022, 05, 23, 10, 0, 0),
+                //LoanDateTimeEnd = new DateTime(2022, 05, 30, 10, 0, 0),
+                //UserId = 1
 
             });
             modelBuilder.Entity<BookModel>().HasData(new BookModel
@@ -148,24 +148,24 @@ namespace Bibliotek.Data
             modelBuilder.Entity<EBookModel>().HasData(new EBookModel
             {
                 Id = 5,
-                Lent = true,
+               // Lent = true,
                 Type = "Ebook",
                 ReleaseId = 3,
                 DataSize = 2.3,
-                LoanDateTimeStart = new DateTime(2022, 05, 15, 12, 0, 0),
-                LoanDateTimeEnd = new DateTime(2022, 05, 25, 12, 0, 0),
-                UserId = 1,
+                //LoanDateTimeStart = new DateTime(2022, 05, 15, 12, 0, 0),
+                //LoanDateTimeEnd = new DateTime(2022, 05, 25, 12, 0, 0),
+                //UserId = 1,
             });
             modelBuilder.Entity<EBookModel>().HasData(new EBookModel
             {
                 Id = 6,
-                Lent = true,
+              //  Lent = true,
                 Type = "Ebook",
                 DataSize = 1.2,
                 ReleaseId = 4,
-                LoanDateTimeStart = new DateTime(2022, 05, 21, 9, 0, 0),
-                LoanDateTimeEnd = new DateTime(2022, 05, 29, 9, 0, 0),
-                UserId = 2,
+                //LoanDateTimeStart = new DateTime(2022, 05, 21, 9, 0, 0),
+                //LoanDateTimeEnd = new DateTime(2022, 05, 29, 9, 0, 0),
+                //UserId = 2,
             });
             //---------- MOVIES
             modelBuilder.Entity<MovieModel>().HasData(new MovieModel
@@ -195,12 +195,12 @@ namespace Bibliotek.Data
                 Id = 9,
                 Type = "Movie",
                 ReleaseId = 5,
-                Lent = true,
-                LoanDateTimeStart = new DateTime(2022, 05, 24, 15, 0, 0),
-                LoanDateTimeEnd = new DateTime(2022, 05, 29, 15, 0, 0),
+                //Lent = true,
+                //LoanDateTimeStart = new DateTime(2022, 05, 24, 15, 0, 0),
+                //LoanDateTimeEnd = new DateTime(2022, 05, 29, 15, 0, 0),
                 Director = "Wachowsky brothers",
                 Length = 94,
-                UserId = 3,
+              //  UserId = 3,
 
             });
 

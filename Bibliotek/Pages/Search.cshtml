@@ -4,6 +4,8 @@
 @{
     ViewData["Title"] = "Search page";
     int counter = 1;
+
+  
 }
 
 
@@ -24,11 +26,12 @@
 <br />
 
 
+
 <table class="table">
   <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Tittle</th>
+      <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Type</th>
         <th scope="col">Genre</th>
@@ -51,26 +54,32 @@
                 @{
                     if (obj.Type == "Book")
                     {
-                      //  var book = (BookModel)obj;
-                      //  <td>Format: @book.BookFormat</td>
+                        //var book = (BookModel)obj;
+                        //<td>Format: @book.BookFormat</td>
                       <td>Format: A4</td>
                     }
                     if (obj.Type == "Ebook")
                     {
-                       // var ebook = (EBookModel)obj;
-                       // <td>Size: @ebook.DataSize</td>
+                        //var ebook = (EBookModel)obj;
+                        //<td>Size: @ebook.DataSize</td>
                          <td>Size: 1,3 Mb</td>
                     }
                        if (obj.Type == "Movie")
                     {
-                       // var movie = (MovieModel)obj;
-                      //  <td>Length: @movie.Length</td>
+                        //var movie = (MovieModel)obj;
+                        //<td>Length: @movie.Length</td>
                           <td>Length: 94</td>
                     }
                 }
                 <td>
                      @(obj.Lent ? "Available" : "Non available")
                 </td>
+                @{
+                        if (Model.LoggedUser.Role == Role.User)
+                        {
+                            <td>Borrow this object</td>
+                        }
+                }
 
             </tr>
         }

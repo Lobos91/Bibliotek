@@ -150,26 +150,6 @@ namespace Bibliotek.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Role = 0,
-                            UserName = "Marius Ohlsson"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Role = 0,
-                            UserName = "Jesus Christus"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Role = 0,
-                            UserName = "Sasha Grey"
-                        });
                 });
 
             modelBuilder.Entity("Bibliotek.Models.BookModel", b =>
@@ -194,12 +174,9 @@ namespace Bibliotek.Migrations
                         new
                         {
                             Id = 2,
-                            Lent = true,
-                            LoanDateTimeEnd = new DateTime(2022, 5, 30, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            LoanDateTimeStart = new DateTime(2022, 5, 23, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Lent = false,
                             ReleaseId = 1,
                             Type = "Book",
-                            UserId = 1,
                             BookFormat = "A2"
                         },
                         new
@@ -235,23 +212,17 @@ namespace Bibliotek.Migrations
                         new
                         {
                             Id = 5,
-                            Lent = true,
-                            LoanDateTimeEnd = new DateTime(2022, 5, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            LoanDateTimeStart = new DateTime(2022, 5, 15, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Lent = false,
                             ReleaseId = 3,
                             Type = "Ebook",
-                            UserId = 1,
                             DataSize = 2.2999999999999998
                         },
                         new
                         {
                             Id = 6,
-                            Lent = true,
-                            LoanDateTimeEnd = new DateTime(2022, 5, 29, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            LoanDateTimeStart = new DateTime(2022, 5, 21, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Lent = false,
                             ReleaseId = 4,
                             Type = "Ebook",
-                            UserId = 2,
                             DataSize = 1.2
                         });
                 });
@@ -293,12 +264,9 @@ namespace Bibliotek.Migrations
                         new
                         {
                             Id = 9,
-                            Lent = true,
-                            LoanDateTimeEnd = new DateTime(2022, 5, 29, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            LoanDateTimeStart = new DateTime(2022, 5, 24, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Lent = false,
                             ReleaseId = 5,
                             Type = "Movie",
-                            UserId = 3,
                             Director = "Wachowsky brothers",
                             Length = 94
                         });

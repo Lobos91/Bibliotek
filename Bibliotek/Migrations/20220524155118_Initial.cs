@@ -85,22 +85,12 @@ namespace Bibliotek.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Role", "UserName" },
-                values: new object[,]
-                {
-                    { 1, 0, "Marius Ohlsson" },
-                    { 2, 0, "Jesus Christus" },
-                    { 3, 0, "Sasha Grey" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "BookFormat", "Lent", "LoanDateTimeEnd", "LoanDateTimeStart", "ReleaseId", "Type", "UserId" },
                 values: new object[,]
                 {
                     { 1, "A2", false, null, null, 1, "Book", null },
-                    { 2, "A2", true, new DateTime(2022, 5, 30, 10, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 5, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), 1, "Book", 1 },
+                    { 2, "A2", false, null, null, 1, "Book", null },
                     { 3, "A2", false, null, null, 2, "Book", null }
                 });
 
@@ -110,8 +100,8 @@ namespace Bibliotek.Migrations
                 values: new object[,]
                 {
                     { 4, 0.59999999999999998, false, null, null, 3, "Ebook", null },
-                    { 5, 2.2999999999999998, true, new DateTime(2022, 5, 25, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 5, 15, 12, 0, 0, 0, DateTimeKind.Unspecified), 3, "Ebook", 1 },
-                    { 6, 1.2, true, new DateTime(2022, 5, 29, 9, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 5, 21, 9, 0, 0, 0, DateTimeKind.Unspecified), 4, "Ebook", 2 }
+                    { 5, 2.2999999999999998, false, null, null, 3, "Ebook", null },
+                    { 6, 1.2, false, null, null, 4, "Ebook", null }
                 });
 
             migrationBuilder.InsertData(
@@ -121,7 +111,7 @@ namespace Bibliotek.Migrations
                 {
                     { 7, "Wachowsky brothers", 94, false, null, null, 5, "Movie", null },
                     { 8, "Wachowsky brothers", 94, false, null, null, 5, "Movie", null },
-                    { 9, "Wachowsky brothers", 94, true, new DateTime(2022, 5, 29, 15, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 5, 24, 15, 0, 0, 0, DateTimeKind.Unspecified), 5, "Movie", 3 }
+                    { 9, "Wachowsky brothers", 94, false, null, null, 5, "Movie", null }
                 });
 
             migrationBuilder.CreateIndex(
