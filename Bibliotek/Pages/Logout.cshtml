@@ -1,0 +1,17 @@
+﻿@page
+@model Bibliotek.Pages.LogoutModel
+@{
+}
+
+
+
+<h2 class="display-2 mb-4">Logout</h2>
+
+<form method="post">
+    <div class="mb-5">
+    <h3>Do you want to logout ?</h3>
+            <input type="submit" class="btn btn-primary" value="Yes!" asp-route-logMeOut="true"/>
+            <input type="submit" class="btn btn-danger"  value="No!"/>
+    </div>
+</form> 
+
