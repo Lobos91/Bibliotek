@@ -62,5 +62,43 @@ namespace Bibliotek.Data
 
             return null;
         }
+        ////////////////////////////////
+        //----------- Ebooks ----------//  
+        public async Task<List<EBookModel>> GetEbooks()
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.GetFromJsonAsync<List<EBookModel>>(baseURL + "Ebook");
+                return response;
+            }
+
+            return null;
+        }
+
+        ////////////////////////////////
+        //----------- ALL products ----------//  
+        public async Task<List<ProductModel>> GetProducts()
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.GetFromJsonAsync<List<ProductModel>>(baseURL + "Product");
+                return response;
+            }
+
+            return null;
+        }
+
+        ////////////////////////////////
+        //----------- Releases ----------//  
+        public async Task<List<ReleaseModel>> GetReleases()
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.GetFromJsonAsync<List<ReleaseModel>>(baseURL + "Release");
+                return response;
+            }
+
+            return null;
+        }
     }
 }

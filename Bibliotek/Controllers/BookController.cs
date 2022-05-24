@@ -1,7 +1,7 @@
 ﻿using Bibliotek.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bibliotek.Controller
+namespace Bibliotek.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -18,6 +18,6 @@ namespace Bibliotek.Controller
             return Ok(books);
         }
 
-       
+    
     }
 }

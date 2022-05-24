@@ -5,19 +5,20 @@ namespace Bibliotek.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController : ControllerBase
+    public class ReleaseController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public MovieController(AppDbContext context) { _context = context; }
+        public ReleaseController(AppDbContext context) { _context = context; }
 
         [HttpGet]
-        public async Task<IActionResult> GetEbooks()
+        public async Task<IActionResult> GetAllReleases()
         {
-            var movies = _context.Movies.ToList();
+            var releases = _context.Releases.ToList();
                                     
-            return Ok(movies);
+            return Ok(releases);
         }
 
-       
+
+
     }
 }
