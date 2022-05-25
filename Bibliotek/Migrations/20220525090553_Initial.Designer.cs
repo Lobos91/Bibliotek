@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bibliotek.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220524155118_Initial")]
+    [Migration("20220525090553_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
