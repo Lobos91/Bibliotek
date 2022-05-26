@@ -66,10 +66,22 @@ namespace Bibliotek.Data
             HttpResponseMessage response = await client.PutAsJsonAsync(baseURL + "Product/" + product.Id , product);
 
             response.EnsureSuccessStatusCode();
-
         
         }
+        //---------------------------------------------------------------------------------//
+        public async Task ResetProducts(List<ProductModel> Products)
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.PutAsJsonAsync<List<ProductModel>>(baseURL + "Product", Products);
+                //{
+                //    var strResponse = await response.Content.ReadAsStringAsync();
+                //    return JsonConvert.DeserializeObject<List<ProductModel>>(strResponse);
+                //}
+            }
 
+            //return null;
+        }
 
     }
 }

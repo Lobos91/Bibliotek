@@ -46,6 +46,15 @@
                     }
                 }
             </div>
+            <form method="post">
+                    <input type="hidden" asp-for="AllProducts"/>
+                <div class="m-3"  style="padding: 10px">
+                    <h5>Return default product list (For tests)</h5>
+                    <button type="submit" class="btn btn-warning" asp-page-handler="Reset">RENSA ALLA UTLÅNINGAR</button>
+                </div>
+            </form>
+          
+
         </div>
 
 
@@ -65,6 +74,10 @@
                         <input type="hidden" asp-for="ProductToBorrow.Id" />
                         <input type="hidden" asp-for="ProductToBorrow.Type" />
                         <input type="hidden" asp-for="ProductToBorrow.ReleaseId" />
+
+                            <input type="hidden" asp-for="User.Id" />
+                                <input type="hidden" asp-for="User.UserName" />
+                                    <input type="hidden" asp-for="User.Role" />
 
 
 

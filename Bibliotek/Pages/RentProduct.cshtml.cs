@@ -17,6 +17,8 @@ namespace Bibliotek.Pages
 
         [BindProperty] public ProductModel ProductToBorrow { get; set; } = new();
         public List<ProductModel> UserProducts { get; set; } = new();
+        [BindProperty] public List<ProductModel> AllProducts { get; set; } = new();
+
         public DateSelector dateSelector { get; set; } = new();
         [BindProperty] public UserModel User { get; set; } = new();
 
@@ -32,10 +34,10 @@ namespace Bibliotek.Pages
             var users = await apiManager.GetUsers();
             User = users.FirstOrDefault(u => u.UserName == currentUser.UserName);
 
-            var products = await apiManager.GetProducts();
-            UserProducts = products.Where(x => x.Lent).Where(p => p.UserId == User.Id).ToList();
+            AllProducts = await apiManager.GetProducts();
+            UserProducts = AllProducts.Where(x => x.Lent).Where(p => p.UserId == User.Id).ToList();
 
-             ProductToBorrow = products[id - 1];
+             ProductToBorrow = AllProducts[id - 1];
 
             Days = dateSelector.OptionListDays();
 
@@ -46,10 +48,6 @@ namespace Bibliotek.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var currentUser = await _signInManager.UserManager.GetUserAsync(HttpContext.User);
-            var users = await apiManager.GetUsers();
-            User = users.FirstOrDefault(u => u.UserName == currentUser.UserName);
-
             //update product
             ProductToBorrow.Lent = true;
             ProductToBorrow.LoanDateTimeStart = DateTime.Now;
@@ -60,11 +58,28 @@ namespace Bibliotek.Pages
 
             if (ModelState.IsValid)
             {
-                 await apiManager.UpdateProduct(ProductToBorrow);
+                await apiManager.UpdateProduct(ProductToBorrow);
                 TempData["success"] = "Product has been succesfully booked.";
             }
 
+            return RedirectToPage("/Search");
+        }
 
+
+        //Reset product (just for tests)
+        public async Task<IActionResult> OnPostReset()
+        {
+            AllProducts = await apiManager.GetProducts();
+         
+            foreach (var prod in AllProducts)
+            {
+                prod.UserId = null;
+                prod.Lent = false;
+                prod.LoanDateTimeEnd = null;
+                prod.LoanDateTimeStart = null;
+            }
+
+            await apiManager.ResetProducts(AllProducts);
             return RedirectToPage("/Search");
 
 

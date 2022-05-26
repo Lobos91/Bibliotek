@@ -35,6 +35,18 @@ namespace Bibliotek.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public async Task<IActionResult> ResetProduct(List<ProductModel> Products)
+        {
+            foreach (var item in Products)
+            {
+                _context.Entry(item).State = EntityState.Modified;
+            }
+           
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
 
     }
 }
