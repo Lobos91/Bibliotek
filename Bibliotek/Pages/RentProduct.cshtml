@@ -1,0 +1,77 @@
+﻿@page
+@model Bibliotek.Pages.RentProductModel
+@{
+}
+
+<div class="container row-cols-sm-auto">
+    <div class="card-columns d-flex justify-content-center">
+
+        <!-- List of borrowed stuff-->
+        <div class="card col-6 m-3 border-primary" style="padding: 10px">
+            <div class="card-block">
+                <h4 class="card-title">Your borrowed products:</h4>
+                @{
+                    if (!Model.UserProducts.Any())
+                    {
+                        <h4>No products found on your account</h4>
+                    }
+                    else
+                    {
+                        foreach (var prod in Model.UserProducts)
+                        {
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>Product ID </th>
+                                        <th>Type</th>
+                                        <th>Title</th>
+                                        <th>Borrowed</th>
+                                        <th>End of borrow</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@prod.Id</td>
+                                        <td>@prod.Type</td>
+                                        <td>@prod.Release.Title</td>
+                                        <td>@prod.LoanDateTimeStart</td>
+                                        <td>@prod.LoanDateTimeEnd</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+
+         <!-- Borrow an object-->
+        <div class="card col-6 m-3 border-primary" style="padding: 10px">
+            <div class="card-block">
+                 <h2>You are about to rent following product:</h2>
+                  <hr />
+                    <div class="m-3">
+                <h4 class="card-title">Product ID: @Model.ProductToBorrow.Id</h4>
+                <h4 class="card-title">Product Name: @Model.ProductToBorrow.Release.Title</h4>
+                <h4 class="card-title">Product Type: @Model.ProductToBorrow.Type</h4>
+                </div>
+              
+                <form method="post">
+                    <div class="m-3">
+
+                        <label class="text-white">Choose the rental period</label>
+                        <select  asp-items="@Model.Days" class="form-select" required>
+                        </select>
+                        <span class="text-warning" asp-validation-for="Days"></span>
+                    </div>
+                      <div class="m-3">
+                         <button type="submit" class="btn btn-success">Rent this @Model.ProductToBorrow.Type</button>
+                          </div>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

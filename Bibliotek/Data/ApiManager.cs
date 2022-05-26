@@ -98,17 +98,7 @@ namespace Bibliotek.Data
             return null;
         }
 
-        ////////////////////////////////
-        //----------- Releases ----------//  
-        public async Task<List<ReleaseModel>> GetReleases()
-        {
-            using (HttpClient client = new())
-            {
-                var response = await client.GetFromJsonAsync<List<ReleaseModel>>(baseURL + "Release");
-                return response;
-            }
+  
 
-            return null;
-        }
     }
 }
