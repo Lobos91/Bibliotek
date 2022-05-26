@@ -15,9 +15,14 @@ namespace Bibliotek.Pages
             _signInManager = signInManager;
         }
 
-        public ProductModel ProductToBorrow { get; set; } = new();
+        [BindProperty] public ProductModel ProductToBorrow { get; set; } = new();
         public List<ProductModel> UserProducts { get; set; } = new();
-        public List<SelectListItem> Days { get; set; } = new();
+        public DateSelector dateSelector { get; set; } = new();
+        [BindProperty] public UserModel User { get; set; } = new();
+
+
+
+        public IEnumerable<SelectListItem> Days { get; set; } 
         public ApiManager apiManager { get; set; } = new();
 
 
@@ -25,20 +30,44 @@ namespace Bibliotek.Pages
         {
             var currentUser = await _signInManager.UserManager.GetUserAsync(HttpContext.User);
             var users = await apiManager.GetUsers();
-            var user = users.FirstOrDefault(u => u.UserName == currentUser.UserName);
+            User = users.FirstOrDefault(u => u.UserName == currentUser.UserName);
 
             var products = await apiManager.GetProducts();
-            UserProducts = products.Where(x => x.Lent).Where(u => u.Id == user.Id).ToList();
+            UserProducts = products.Where(x => x.Lent).Where(p => p.UserId == User.Id).ToList();
 
-            ProductToBorrow = products[id];
+             ProductToBorrow = products[id - 1];
 
-            Days.Add(new SelectListItem() { Text = "Choose your period", Disabled = true });
-            Days.Add(new SelectListItem() { Text = "7 Days" , Value = "1"});
-            Days.Add(new SelectListItem() { Text = "14 Days", Value = "2" });
-            Days.Add(new SelectListItem() { Text = "30 Days", Value = "3" });
+            Days = dateSelector.OptionListDays();
+
 
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var currentUser = await _signInManager.UserManager.GetUserAsync(HttpContext.User);
+            var users = await apiManager.GetUsers();
+            User = users.FirstOrDefault(u => u.UserName == currentUser.UserName);
+
+            //update product
+            ProductToBorrow.Lent = true;
+            ProductToBorrow.LoanDateTimeStart = DateTime.Now;
+            Convert.ToDateTime(ProductToBorrow.LoanDateTimeEnd);
+
+            ProductToBorrow.UserId = User.Id;
+       
+
+            if (ModelState.IsValid)
+            {
+                 await apiManager.UpdateProduct(ProductToBorrow);
+                TempData["success"] = "Product has been succesfully booked.";
+            }
+
+
+            return RedirectToPage("/Search");
+
+
         }
     }
 }

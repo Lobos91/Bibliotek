@@ -16,7 +16,7 @@ namespace Bibliotek.Models
 
         [ForeignKey(nameof(Release))]
         [Column(Order = 3)] public int ReleaseId { get; set; }
-        public ReleaseModel Release { get; set; }
+        public ReleaseModel? Release { get; set; }
 
       
         public int? UserId { get; set; }

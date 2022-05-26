@@ -48,45 +48,7 @@ namespace Bibliotek.Data
         }
 
         ////////////////////////////////
-        //----------- Books ----------//  
-        public async Task<List<BookModel>> GetBooks()
-        {
-            using (HttpClient client = new())
-            {
-                var response = await client.GetFromJsonAsync<List<BookModel>>(baseURL + "Book");
-                return response;
-            }
-
-            return null;
-        }
-
-        ////////////////////////////////
-        //----------- Movies ----------//  
-        public async Task<List<MovieModel>> GetMovies()
-        {
-            using (HttpClient client = new())
-            {
-                var response = await client.GetFromJsonAsync<List<MovieModel>>(baseURL + "Movie");
-                return response;
-            }
-
-            return null;
-        }
-        ////////////////////////////////
-        //----------- Ebooks ----------//  
-        public async Task<List<EBookModel>> GetEbooks()
-        {
-            using (HttpClient client = new())
-            {
-                var response = await client.GetFromJsonAsync<List<EBookModel>>(baseURL + "Ebook");
-                return response;
-            }
-
-            return null;
-        }
-
-        ////////////////////////////////
-        //----------- ALL products ----------//  
+        //----------- PRODUCTS ----------//  
         public async Task<List<ProductModel>> GetProducts()
         {
             using (HttpClient client = new())
@@ -97,8 +59,17 @@ namespace Bibliotek.Data
 
             return null;
         }
+        //---------------------------------------------------------------------------------//
+        public async Task UpdateProduct(ProductModel product)
+        {
+            using HttpClient client = new();
+            HttpResponseMessage response = await client.PutAsJsonAsync(baseURL + "Product/" + product.Id , product);
 
-  
+            response.EnsureSuccessStatusCode();
+
+        
+        }
+
 
     }
 }

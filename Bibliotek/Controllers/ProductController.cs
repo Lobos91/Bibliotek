@@ -1,4 +1,5 @@
 ﻿using Bibliotek.Data;
+using Bibliotek.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,20 @@ namespace Bibliotek.Controllers
             return Ok(prods);
         }
 
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit(ProductModel product)
+        {
+            if (product.Id == 0)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(product).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
 
 
     }

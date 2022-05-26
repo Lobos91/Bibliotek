@@ -7,7 +7,7 @@
     <div class="card-columns d-flex justify-content-center">
 
         <!-- List of borrowed stuff-->
-        <div class="card col-6 m-3 border-primary" style="padding: 10px">
+        <div class="card col-7 m-3 border-primary" style="padding: 10px">
             <div class="card-block">
                 <h4 class="card-title">Your borrowed products:</h4>
                 @{
@@ -17,19 +17,20 @@
                     }
                     else
                     {
-                        foreach (var prod in Model.UserProducts)
-                        {
+                       
                             <table class="table table-dark">
                                 <thead>
                                     <tr>
                                         <th>Product ID </th>
                                         <th>Type</th>
                                         <th>Title</th>
-                                        <th>Borrowed</th>
-                                        <th>End of borrow</th>
+                                        <th>Rental start</th>
+                                        <th>Rental end</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                 @{foreach (var prod in Model.UserProducts)
+                                     {
                                     <tr>
                                         <td>@prod.Id</td>
                                         <td>@prod.Type</td>
@@ -37,9 +38,11 @@
                                         <td>@prod.LoanDateTimeStart</td>
                                         <td>@prod.LoanDateTimeEnd</td>
                                     </tr>
+                                     }
+                                     }
                                 </tbody>
                             </table>
-                        }
+                       
                     }
                 }
             </div>
@@ -47,9 +50,9 @@
 
 
          <!-- Borrow an object-->
-        <div class="card col-6 m-3 border-primary" style="padding: 10px">
+        <div class="card col-5 m-3 border-primary" style="padding: 10px">
             <div class="card-block">
-                 <h2>You are about to rent following product:</h2>
+                 <h4>You are about to rent following product:</h4>
                   <hr />
                     <div class="m-3">
                 <h4 class="card-title">Product ID: @Model.ProductToBorrow.Id</h4>
@@ -59,9 +62,14 @@
               
                 <form method="post">
                     <div class="m-3">
+                        <input type="hidden" asp-for="ProductToBorrow.Id" />
+                        <input type="hidden" asp-for="ProductToBorrow.Type" />
+                        <input type="hidden" asp-for="ProductToBorrow.ReleaseId" />
+
+
 
                         <label class="text-white">Choose the rental period</label>
-                        <select  asp-items="@Model.Days" class="form-select" required>
+                        <select  asp-for="ProductToBorrow.LoanDateTimeEnd" asp-items="@Model.Days" class="form-select">
                         </select>
                         <span class="text-warning" asp-validation-for="Days"></span>
                     </div>
