@@ -72,30 +72,37 @@
                           <td>Length: 94</td>
                     }
                 }
-              
-                @{
-                    if (Model.LoggedUser.Role == Role.User)
-                    {
-                        if(obj.Lent)
-                        {
-                             <td>
-                            <i class="bi bi-dash-circle-fill" style="color:red"> Item not available</i>
-                           </td> 
-                        }
-                        else
-                        {
-                          <td>
 
-                           <button type="submit" class="btn btn-warning
-">
-                           <a asp-page="/RentProduct" asp-page-handler="Product" asp-route-id="@obj.Id"> Rent this product </a>
-                          </button>
-                            </td>
+                @{
+                    if (Model.LoggedUser != null)
+                    {
+                        if (Model.LoggedUser.Role == Role.User)
+                        {
+                            if (obj.Lent)
+                            {
+                                <td>
+                                    <i class="bi bi-dash-circle-fill" style="color:red"> Item not available</i>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+
+                                    <button type="submit" class="btn btn-warning
+        ">
+                                        <a asp-page="/RentProduct" asp-page-handler="Product" asp-route-id="@obj.Id"> Rent this product </a>
+                                    </button>
+                                </td>
+                            }
+                        }
+                        else 
+                        {
+                            <td> @(!obj.Lent ? "Available" : "Non available")</td>
                         }
                     }
                     else
                     {
-                       <td> @(!obj.Lent ? "Available" : "Non available")</td>
+                        <td> @(!obj.Lent ? "Available" : "Non available")</td>
                     }
                 }
 
