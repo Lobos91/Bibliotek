@@ -18,12 +18,8 @@ namespace Bibliotek.Pages
         [BindProperty] public ProductModel ProductToBorrow { get; set; } = new();
         public List<ProductModel> UserProducts { get; set; } = new();
         [BindProperty] public List<ProductModel> AllProducts { get; set; } = new();
-
         public DateSelector dateSelector { get; set; } = new();
         [BindProperty] public UserModel User { get; set; } = new();
-
-
-
         public IEnumerable<SelectListItem> Days { get; set; } 
         public ApiManager apiManager { get; set; } = new();
 
@@ -65,24 +61,12 @@ namespace Bibliotek.Pages
             return RedirectToPage("/Search");
         }
 
-
+      
         //Reset product (just for tests)
         public async Task<IActionResult> OnPostReset()
         {
-            AllProducts = await apiManager.GetProducts();
-         
-            foreach (var prod in AllProducts)
-            {
-                prod.UserId = null;
-                prod.Lent = false;
-                prod.LoanDateTimeEnd = null;
-                prod.LoanDateTimeStart = null;
-            }
-
             await apiManager.ResetProducts(AllProducts);
             return RedirectToPage("/Search");
-
-
         }
     }
 }

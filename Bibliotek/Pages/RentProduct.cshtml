@@ -47,14 +47,24 @@
                 }
             </div>
             <form method="post">
-                    <input type="hidden" asp-for="AllProducts"/>
-                <div class="m-3"  style="padding: 10px">
-                    <h5>Return default product list (For tests)</h5>
-                    <button type="submit" class="btn btn-warning" asp-page-handler="Reset">RENSA ALLA UTLÅNINGAR</button>
+             @for (var i = 0; i < Model.AllProducts.Count(); i++)
+                {
+                    <input type="hidden" asp-for="@Model.AllProducts[i].Id"/>
+                    <input type="hidden" asp-for="@Model.AllProducts[i].Type"/>
+                    <input type="hidden" asp-for="@Model.AllProducts[i].Lent" value="false"/>
+                    <input type="hidden" asp-for="@Model.AllProducts[i].LoanDateTimeStart" value="null"/>
+                    <input type="hidden" asp-for="@Model.AllProducts[i].LoanDateTimeEnd" value="null"/>
+                    <input type="hidden" asp-for="@Model.AllProducts[i].Release" value="null"/>
+                    <input type="hidden" asp-for="@Model.AllProducts[i].ReleaseId"/>
+                    <input type="hidden" asp-for="@Model.AllProducts[i]t.User" value="null"/>
+                    <input type="hidden" asp-for="@Model.AllProducts[i].UserId" value="null"/>
+                }
+                
+                <div class="m-3"  style="padding: 10px; background-color: #8080803d">
+                     <h5>Return default product list (For tests)</h5>
+                    <button type="submit" class="btn btn-warning" asp-page-handler="Reset">ÅTERSTÄLLA ALLA UTLÅNINGAR</button>
                 </div>
             </form>
-          
-
         </div>
 
 
@@ -76,8 +86,8 @@
                         <input type="hidden" asp-for="ProductToBorrow.ReleaseId" />
 
                             <input type="hidden" asp-for="User.Id" />
-                                <input type="hidden" asp-for="User.UserName" />
-                                    <input type="hidden" asp-for="User.Role" />
+                               @* <input type="hidden" asp-for="User.UserName" />
+                                    <input type="hidden" asp-for="User.Role" />*@
 
 
 
