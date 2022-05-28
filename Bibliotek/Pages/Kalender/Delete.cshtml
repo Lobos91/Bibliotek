@@ -1,0 +1,33 @@
+﻿@page
+@model Bibliotek.Pages.Kalender.DeleteModel
+@{
+}
+
+
+<div class="text-center">
+    <h1>Do you really want to delete following Event?</h1>
+   
+</div>
+
+
+        <div class="card text-center">
+         
+            <div class="card-body">
+                <h5 class="card-title">@Model.EventToDelete.Headline</h5>
+                <div>
+                    <span style="white-space: pre-line">@Model.EventToDelete.Message</span>
+                </div>
+            </div>
+           
+        </div>
+
+
+
+        <div>
+            <form method="post">
+
+                <input type="hidden" asp-for="EventToDelete.Id" >
+
+                <button type="submit" class="btn btn-danger">Delete this Event</button>
+            </form>
+        </div>

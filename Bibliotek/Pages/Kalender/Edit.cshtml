@@ -1,0 +1,34 @@
+﻿@page
+@model Bibliotek.Pages.Kalender.EditModel
+@{
+}
+
+<h2>Edit Event</h2>
+<hr />
+<h1>you are editing @Model.EditedEvent.Headline</h1>
+
+<div class="container">
+    <form method="post">
+
+    <div class="mb-3">
+       
+        <input type="hidden" asp-for="EditedEvent.Id" class="form-control" placeholder="Id for post">
+         <input type="hidden" asp-for="EditedEvent.Date" value="@DateTime.Now" >
+
+        <label for="validationDefault01" class="form-label">Header</label>
+        <input type="text" asp-for="Header" class="form-control" placeholder="Header/title">
+
+        <label for="validationDefault01" class="form-label">Content</label>
+        <textarea type="text" asp-for="Message" class="form-control text-area" placeholder="Content"></textarea>
+       
+  </div>
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+</form>
+
+
+
+</div>
+
+
