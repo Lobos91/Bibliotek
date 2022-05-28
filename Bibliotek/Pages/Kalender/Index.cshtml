@@ -1,0 +1,62 @@
+﻿@page
+ @using Bibliotek.Models
+@model Bibliotek.Pages.Kalender.IndexModel
+
+<div class="row">
+    <div class="col-10">
+        <h1>Event Calendar</h1>
+    </div>
+
+    <div class="col-2 ">
+        @{
+            if (Model.LoggedUser != null)
+            {
+                if ((Model.LoggedUser.Role == Role.SuperAdmin)
+                || (Model.LoggedUser.Role == Role.Admin))
+                {
+                    <a class="btn btn-warning btn-lg" asp-page="/Kalender/Create">Create New Event</a>
+                }
+            }
+        }
+    </div>
+
+</div>
+
+
+
+
+
+
+<hr>
+
+@{
+    foreach (var evenemang in Model.Events)
+    {
+        <div class="card text-center">
+            <div class="card-header">
+
+                   @{ if (Model.LoggedUser != null)
+                    {
+                        if ((Model.LoggedUser.Role == Role.SuperAdmin)
+                        || (Model.LoggedUser.Role == Role.Admin))
+                        {
+                            <a class="btn btn-info" asp-route-id="@evenemang.Id" asp-page="/Kalender/Edit">Modify</a>
+                            <a class="btn btn-danger" asp-route-id="@evenemang.Id" asp-page="/Kalender/Delete">Delete</a>
+                        }
+                    }
+                }
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@evenemang.Headline</h5>
+                <div>
+                    <span style="white-space: pre-line">@evenemang.Message</span>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                Posted: @evenemang.Date.ToShortDateString()
+            </div>
+        </div>
+    }
+}
+
+
