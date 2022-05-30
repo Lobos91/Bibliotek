@@ -18,6 +18,8 @@ namespace Bibliotek.Data
         public DbSet<BookModel> Books { get; set; }
         public DbSet<ReleaseModel> Releases { get; set; }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<KalenderModel> Kalendars { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

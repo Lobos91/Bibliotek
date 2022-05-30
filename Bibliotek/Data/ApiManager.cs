@@ -5,11 +5,7 @@ namespace Bibliotek.Data
 {
     public class ApiManager
     {
-
-       // private static readonly HttpClient client = new HttpClient();
-
         private string baseURL = "https://localhost:7119/api/";
-
         ///////////////////////////////
         //----------- USER ----------//  
         public async Task<List<UserModel>> GetUsers()
@@ -74,14 +70,50 @@ namespace Bibliotek.Data
             using (HttpClient client = new())
             {
                 var response = await client.PutAsJsonAsync<List<ProductModel>>(baseURL + "Product", Products);
-                //{
-                //    var strResponse = await response.Content.ReadAsStringAsync();
-                //    return JsonConvert.DeserializeObject<List<ProductModel>>(strResponse);
-                //}
             }
-
-            //return null;
         }
 
+        ////////////////////////////////
+        //----------- Events ----------//  
+        public async Task<List<KalenderModel>> GetEvents()
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.GetFromJsonAsync<List<KalenderModel>>(baseURL + "Kalender");
+                return response;
+            }
+
+            return null;
+        }
+        //---------------------------------------------------------------------------------//
+        public async Task UpdateEvent(KalenderModel EventToUpdate)
+        {
+            using (HttpClient client = new())
+            {
+                var response = await client.PutAsJsonAsync(baseURL + "Kalender/" + EventToUpdate.Id , EventToUpdate);
+                response.EnsureSuccessStatusCode();
+            }
+        }
+        //---------------------------------------------------------------------------------//
+        public async Task<KalenderModel> CreateEvent(KalenderModel NewEvent)
+        {
+            using (HttpClient client = new())
+            {
+                using (var response = await client.PostAsJsonAsync<KalenderModel>(baseURL + "Kalender", NewEvent))
+                {
+                    var strResponse = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<KalenderModel>(strResponse);
+                }
+            }
+            return null;
+        }
+        //---------------------------------------------------------------------------------//
+        public async Task DeleteEvent(int id)
+        {
+            using (HttpClient client = new())
+            {
+                var respond = await client.DeleteAsync(baseURL + "Kalender/" + id);
+            }
+        }
     }
 }

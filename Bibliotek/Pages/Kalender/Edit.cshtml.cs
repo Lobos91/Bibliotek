@@ -9,22 +9,25 @@ namespace Bibliotek.Pages.Kalender
     public class EditModel : PageModel
     {
         public KalenderModel EditedEvent { get; set; } = new();
+        public ApiManager apiManager { get; set; } = new();
+
         public int ID { get; set; }
         public string Header { get; set; }
         public string Message { get; set; }
 
-        public void OnGet(int id)
+        public async Task OnGet(int id)
         {
-        
-            EditedEvent = KalenderManager.GetEvents().FirstOrDefault(e => e.Id == id);
+            var allEvents = await apiManager.GetEvents();
+            EditedEvent = allEvents.FirstOrDefault(ev => ev.Id == id);
+           
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            EditedEvent.Id = ID;
             EditedEvent.Headline = Header;
             EditedEvent.Message = Message;
-            KalenderManager.UpdateEvent(EditedEvent);
+
+            await apiManager.UpdateEvent(EditedEvent);
             return RedirectToPage("/Kalender/Index");
         }
     }

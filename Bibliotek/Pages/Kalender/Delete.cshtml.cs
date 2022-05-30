@@ -8,18 +8,19 @@ namespace Bibliotek.Pages.Kalender
     public class DeleteModel : PageModel
     {
         [BindProperty] public KalenderModel EventToDelete { get; set; } = new();
-        public int ID { get; set; }
+        public ApiManager apiManager { get; set; } = new();
         public string Header { get; set; }
         public string Message { get; set; }
 
-        public void OnGet(int id)
+        public async Task OnGet(int id)
         {
+            var allEvents = await apiManager.GetEvents();
+            EventToDelete = allEvents.FirstOrDefault(ev => ev.Id == id);
 
-            EventToDelete = KalenderManager.GetEvents().FirstOrDefault(e => e.Id == id);
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            KalenderManager.RemoveEvent(EventToDelete);
+            await apiManager.DeleteEvent(EventToDelete.Id);
             return RedirectToPage("/Kalender/Index");
         }
 
