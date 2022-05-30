@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bibliotek.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220530082050_Initial")]
+    [Migration("20220530190615_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,9 +36,11 @@ namespace Bibliotek.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Headline")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

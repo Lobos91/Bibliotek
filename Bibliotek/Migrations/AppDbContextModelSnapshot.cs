@@ -34,9 +34,11 @@ namespace Bibliotek.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Headline")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
