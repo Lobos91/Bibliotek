@@ -25,7 +25,8 @@ namespace Bibliotek.Pages.Kalender
                 LoggedUser = users.FirstOrDefault(u => u.UserName == currentUser.UserName);
             }
 
-            Events = KalenderManager.GetEvents();
+            Events = await apiManager.GetEvents();
+          
         }
     }
 }

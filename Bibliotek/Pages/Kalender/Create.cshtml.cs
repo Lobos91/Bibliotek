@@ -8,9 +8,11 @@ namespace Bibliotek.Pages.Kalender
     public class CreateModel : PageModel
     {
        [BindProperty] public KalenderModel NewEvent { get; set; } = new();
-        public IActionResult OnPost()
+        public ApiManager apiManager { get; set; } = new();
+
+        public async Task<IActionResult> OnPost()
         {
-            KalenderManager.Events.Add(NewEvent);
+            await apiManager.CreateEvent(NewEvent);
             return RedirectToPage("/Kalender/Index");
         }
     }

@@ -5,13 +5,16 @@
 
 <h2>Edit Event</h2>
 <hr />
-<h1>you are editing @Model.EditedEvent.Headline</h1>
+<div class="mb-3">
+<h1>You are editing @Model.EditedEvent.Headline</h1>
+</div>
 
 <div class="container">
     <form method="post">
 
     <div class="mb-3">
        
+
         <input type="hidden" asp-for="EditedEvent.Id" class="form-control" placeholder="Id for post">
          <input type="hidden" asp-for="EditedEvent.Date" value="@DateTime.Now" >
 
@@ -31,4 +34,8 @@
 
 </div>
 
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}
 
