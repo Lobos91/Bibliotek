@@ -22,7 +22,7 @@ namespace Bibliotek.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(ProductModel product)
+        public async Task<IActionResult> UpdateProduct(ProductModel product)
         {
             if (product.Id == 0)
             {

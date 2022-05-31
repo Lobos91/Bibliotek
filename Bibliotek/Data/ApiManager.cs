@@ -42,6 +42,15 @@ namespace Bibliotek.Data
 
             return null;
         }
+        //---------------------------------------------------------------------------------//
+        public async Task UpdateUser(UserModel User)
+        {
+            using HttpClient client = new();
+            HttpResponseMessage response = await client.PutAsJsonAsync(baseURL + "User/" + User.Id, User);
+
+            response.EnsureSuccessStatusCode();
+
+        }
 
         ////////////////////////////////
         //----------- PRODUCTS ----------//  
