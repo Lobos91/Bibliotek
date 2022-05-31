@@ -10,11 +10,14 @@ namespace Bibliotek.Pages
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public SignUpModel(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> usermanager)
+
+        public SignUpModel(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> usermanager, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = usermanager;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -43,13 +46,18 @@ namespace Bibliotek.Pages
                 {
                     if (!users.Any())
                     {
+                        await _roleManager.CreateAsync(new IdentityRole { Name = "SuperAdmin" });
                         NewUser.Role = Role.SuperAdmin;
+                        await _userManager.AddToRoleAsync(newuser, "SuperAdmin");
+                       
+
                     }
                     else 
                     {
                         NewUser.Role = Role.User; 
                     }
 
+                    
                     await apiManager.PostUser(NewUser);
 
                     await _signInManager.PasswordSignInAsync(newuser, Signup.Password, false, false);

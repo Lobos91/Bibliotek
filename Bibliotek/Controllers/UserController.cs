@@ -1,6 +1,7 @@
 ﻿using Bibliotek.Data;
 using Bibliotek.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bibliotek.Controllers
 {
@@ -31,6 +32,22 @@ namespace Bibliotek.Controllers
         public async Task<IActionResult> PostUser(UserModel User)
         {
             _context.Users.Add(User);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(UserModel User)
+        {
+            if (User.Id == 0)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(User).State = EntityState.Modified;
+
             await _context.SaveChangesAsync();
             return Ok();
         }

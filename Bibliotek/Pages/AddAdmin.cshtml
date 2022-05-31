@@ -1,5 +1,73 @@
 ﻿@page
+@using Bibliotek.Models
 @model Bibliotek.Pages.AddAdminModel
 @{
     ViewData["Title"] = "Add Admin";
+    string FontColor = "Color:Red";
 }
+<div class="text-left">
+    <h1 class="display-4">User Manager</h1>
+</div>
+
+
+
+<div>
+    <<table class="table">
+        <thead class="table-secondary">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User</th>
+                <th scope="col">Role</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        @foreach (var user in Model.Users)
+        {
+            if (user.Role != Role.SuperAdmin)
+            {
+                <tbody>
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.UserName</td>
+
+                        @{
+                            if (user.Role == Role.User)
+                            {
+                                <td>@user.Role</td>
+                                <td>
+                                    <form method="post">
+                                        <input type="hidden" asp-for="@user.Id">
+                                        <input type="hidden" asp-for="@user.UserName">
+
+                                        <button asp-page-handler="Admin" class="btn btn-warning"
+                                    onclick="return confirm('Are you sure you want to promote @user.UserName ?')">
+                                            <i class="bi bi-arrow-down-up"></i> &nbsp; Promote to Admin
+                                        </button>
+                                    </form>
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="@FontColor; font-weight: bold;">@user.Role</td>
+                                <td>
+                                    <form method="post">
+                                        <input type="hidden" asp-for="@user.Id">
+                                        <input type="hidden" asp-for="@user.UserName">
+                                        <button asp-page-handler="User" class="btn btn-primary"
+                                    onclick="return confirm('Are you sure you want to degrade @user.UserName ?')">
+                                            <i class="bi bi-arrow-down-up"></i> &nbsp; Degrade to User
+                                        </button>
+                                    </form>
+                                </td>
+                            }
+
+
+                        }
+
+                    </tr>
+                </tbody>
+            }
+
+        }
+    </table>
+</div>
