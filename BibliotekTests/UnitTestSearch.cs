@@ -36,5 +36,25 @@ namespace BibliotekTests
             Console.WriteLine(trNodes);
             
         }
+        //[Fact]
+        //public async Task Test2()
+        //{
+        //    var baseAdress = new Uri("https://localhost:7119");
+        //    using var client = new HttpClient() { BaseAddress = baseAdress };
+
+        //    var message = new HttpRequestMessage(HttpMethod.Get, "/search");
+        //    var response = await client.SendAsync(message);
+
+        //    var content = await response.Content.ReadAsStringAsync();
+
+        //    var htmlDoc = new HtmlDocument();
+        //    htmlDoc.LoadHtml(content);
+
+        //    var tableElement = htmlDoc.GetElementbyId("tableId");
+        //    //Assert.NotNull(tableElement);
+
+        //    var trNode = tableElement.SelectSingleNode("//tbody/tr/td").ToString();
+        //    Assert.Equal("Harry Potter", trNode);
+        //}
     }
 }
