@@ -29,8 +29,8 @@ namespace Bibliotek.Pages
                 var users = await apiManager.GetUsers();
                 LoggedUser = users.FirstOrDefault(u => u.UserName == currentUser.UserName);
             }
-               
-            
+
+
 
             if (string.IsNullOrEmpty(SearchKey))
             {
