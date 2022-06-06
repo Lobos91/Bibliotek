@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Xunit;
 
 //how to run: run the program in visual studio
-//in terminal navigate to project root/biblitekTests
-//run the command: dotnet test
+//in terminal navigate to project root/biblitekTests. To find the correct file path hover over the file name located on the "top" of the screen.
+//example of how I would use the navigation command to find the correct file location of the project: "cd source/repos/Biblioteket/Bibliotek/BibliotekTests"
+//run the command: "dotnet test"
 
 
 //note added a id at <table class=table>
