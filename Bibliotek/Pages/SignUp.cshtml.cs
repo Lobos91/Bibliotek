@@ -47,6 +47,8 @@ namespace Bibliotek.Pages
                     if (!users.Any())
                     {
                         await _roleManager.CreateAsync(new IdentityRole { Name = "SuperAdmin" });
+                        await _roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
+                        await _roleManager.CreateAsync(new IdentityRole { Name = "User" });
                         NewUser.Role = Role.SuperAdmin;
                         await _userManager.AddToRoleAsync(newuser, "SuperAdmin");
                        

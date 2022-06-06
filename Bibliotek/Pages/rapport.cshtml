@@ -5,6 +5,93 @@
 }
 
 <div>
-    <h1 class="display-4">Welcome</h1>
-    <p>Test</p>
+    <h1 class="display-4">Raport</h1>
+</div>
+
+
+<div class="container">
+   <div class="card-columns d-flex justify-content-center">
+
+       
+             <!-- List of users who havve borrowed products-->
+        <div class="card col-4 m-3 border-primary" style="padding: 10px">
+            <div class="card-block">
+                <h4 class="card-title">Users with borrowed products:</h4>
+                @{
+                    if (!Model.Users.Any() || Model.Users == null)
+                    {
+                        <h4>No users found</h4>
+                    }
+                    else
+                    {
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>Borrowed Products</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 @{foreach (var user in Model.Users)
+                                     {
+                                    <tr>
+                                        <td>@user.Id</td>
+                                        <td>@user.UserName</td>
+                                        <td>@user.Products.Count()</td>
+                                    </tr>
+                                     }
+                                     }
+                                </tbody>
+                            </table>
+                       
+                    }
+                }
+        </div>
+        </div>
+
+                <!-- List borrowed products-->
+        <div class="card col-8 m-3 border-primary" style="padding: 10px">
+            <div class="card-block">
+                <h4 class="card-title">Occupied Products</h4>
+                @{
+                    if (!Model.Products.Any() || Model.Products == null)
+                    {
+                        <h4>No products found</h4>
+                    }
+                    else
+                    {
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product ID</th>
+                                        <th>Name</th>
+                                        <th>Author</th>
+                                        <th>Type</th>
+                                        <th>User ID</th>
+                                        <th>Borrowed until:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 @{foreach (var prod in Model.Products)
+                                     {
+                                    <tr>
+                                            <td>@prod.Id</td>
+                                            <td>@prod.Release.Title</td>
+                                            <td>@prod.Release.Author</td>
+                                            <td>@prod.Type</td>
+                                            <td>@prod.UserId</td>
+                                            <td>@prod.LoanDateTimeEnd</td>
+                                        </tr>
+                                    }
+                                     }
+                                </tbody>
+                            </table>
+                       
+                    }
+                }
+        </div>
+        </div>
+    </div>
+
 </div>

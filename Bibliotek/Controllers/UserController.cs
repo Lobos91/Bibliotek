@@ -15,7 +15,8 @@ namespace Bibliotek.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users = _context.Users.ToList();
+            var users = _context.Users.Include(x => x.Products)
+                .ToList();
                                     
             return Ok(users);
         }
